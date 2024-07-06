@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -52,12 +53,17 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware',
 ]
 
 # Enable CORS for all origins in development
-CORS_ALLOW_ALL_ORIGINS = True  # Change this in production to specific origins
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # or whatever your frontend origin is
+]
+
+CORS_ALLOW_CREDENTIALS = True
+# If you want to be more specific about allowed headers and methods, use these settings
+# CORS_ALLOW_HEADERS = ["*"]  # Default is to allow all headers
+# CORS_ALLOW_METHODS = ["*"]  # Default is to allow all methods
 
 ROOT_URLCONF = 'regresifier.urls'
 
